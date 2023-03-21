@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">	
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="text-center">todo app</h1>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>description</th>
+					<th>completed</th>
+					<th>delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item : ${alllist}">
+					<td th:text="${item.discription}"></td>
+					<td >
+					<form th:action="@{/edit/{id}(id=${item.id})}" method="get">
+						<button type="submit"class="${item.complete}"> <p th:text="${item.complete}"></button>
+					</form>
+					
+					
+					</td>
+					<td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${item.id})}">DELETE</a>
+					<a class="btn btn-success" th:href="@{/update/{id}(id=${item.id})}">UPDATE</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<p><a class="btn btn-success" th:href="@{/createtodo}">ADD</a></p>
+	</div>
+	<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
